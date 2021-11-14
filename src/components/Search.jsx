@@ -1,15 +1,10 @@
 import React from 'react';
 import sort from '../icons/sort.png';
-import { Input, Tab } from 'semantic-ui-react';
+import { Input } from 'semantic-ui-react';
 import s from './Search.module.css';
+import Profiles from './Profiles/Profiles';
 
 const Search = () => {
-    const panes = [
-        {
-          menuItem: 'Tab 1',
-          render: () => <Tab.Pane attached={false}>Tab 1 Content</Tab.Pane>,
-        }
-      ]
 
 
     return (
@@ -20,8 +15,6 @@ const Search = () => {
             <img src={sort} alt={sort} />
             </div>
             
-
-            <Tab menu={{ secondary: true, pointing: true }} panes={panes} />
         </div>
     )
 }

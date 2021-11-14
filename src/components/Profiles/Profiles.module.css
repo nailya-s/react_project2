@@ -1,0 +1,7 @@
+.itemStyle {
+    margin-bottom: 20px;
+}
+
+.ui.menu > .item.active {
+    color: #5F30F9;
+  }
