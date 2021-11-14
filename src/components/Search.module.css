@@ -1,0 +1,12 @@
+.Icon {
+    position: relative;
+    background-color: #F7F7F8;
+    ;
+}
+
+.Icon > img {
+    position:absolute;
+      right:0;
+      top: calc(50% - 24px/2);
+      padding: 0px 13px;
+}
