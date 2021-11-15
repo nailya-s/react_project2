@@ -19,32 +19,40 @@ function App() {
     const response = await PostService.getAll();
     setUsers(response.items);
   });
-  const [selectedSort, setselectedSort] =useState("");
+
+  const [filter, setFilter] = useState({sort:'', query: ''});
 
     useEffect(() => {
       fetchUsers();
     }, []);
-    
-    const sortUsers = (sort) => {
-      if(sort === "firstName"){
-        setUsers([...users].sort((a, b) => a[sort].localeCompare(b[sort])));
-      }
-      else if (sort === "birthday"){
-        setUsers([...users].sort((a, b) => {
-          a = a[sort].split('/').reverse().join('');
-          b = b[sort].split('/').reverse().join('');
-          return a > b ? 1 : a < b ? -1 : 0;
-        })
+
+    const sortedUsers = useMemo(() => {
+        if(filter.sort === "firstName"){
+          return [...users].sort((a, b) => a[filter.sort].localeCompare(b[filter.sort]));
+        }
+        else if (filter.sort === "birthday") {
+          return [...users].sort((a, b) => {
+            a = a[filter.sort].split('/').reverse().join('');
+            b = b[filter.sort].split('/').reverse().join('');
+            return a > b ? 1 : a < b ? -1 : 0;
+          }
         )}
-    }; 
+        return users;
+    }, [filter.sort, users]);
+
+    const sortedAndSearchedUsers = useMemo(() => {
+      return sortedUsers.filter(user => user.firstName.toLowerCase().includes(filter.query.toLowerCase()) || user.userTag.toLowerCase().includes(filter.query.toLowerCase()));
+  }, [filter.query, sortedUsers]);
+
+    
 
   return (
     <>
     <Container className='containerStyle' fluid>
-    <Search sortUsers={sortUsers}/>
+    <Search filter={filter} setFilter={setFilter}/>
       {isUsersLoading
       ? <LoaderDisabled />
-      : <Profiles users={users} />}
+      : <Profiles users={sortedAndSearchedUsers} />}
       {usersError && <Error reload={fetchUsers}/>}
     <Routes>
     {/* <Route path="/:profileId" element={<Profile/>}/> */}

@@ -5,12 +5,13 @@ import s from './Search.module.css';
 import Modal from './Modal/Modal';
 import { Header, Divider, Radio, Icon } from 'semantic-ui-react';
 
-const Search = ({sortUsers}) => {
-  const [value, setValue] = useState(null);
+const Search = ({filter, setFilter}) => {
+
   const [visible, setVisible] = useState(false);
+
+
   const handleChange = (event, {value}) => {
-    setValue(value);
-    sortUsers(value);
+    setFilter({...filter, sort: value});
   };
 
   let showModal = () => {
@@ -28,19 +29,20 @@ const Search = ({sortUsers}) => {
                 <Radio
                 name="radioGroup"
                 label="По алфавиту"
-                checked={value === 'firstName'} value="firstName" onChange={handleChange}
+                checked={filter.sort === 'firstName'} value="firstName" onChange={handleChange}
                 ></Radio>
                 <Divider hidden />
                 <Radio
                 name="radioGroup"
                 label="По дню рождения"
-                checked={value === 'birthday'} value="birthday" onChange={handleChange}
+                checked={filter.sort === 'birthday'} value="birthday" onChange={handleChange}
                 ></Radio>
             </div>
         </Modal>
       <h2 className="search">Поиск</h2>
       <div className={s.Icon}>
-        <Input className="inputStyle" fluid icon='search' iconPosition='left' placeholder='Введи имя, тег, почту...' id="before" />
+        <Input className="inputStyle" fluid icon='search' iconPosition='left' placeholder='Введи имя, тег, почту...' 
+        value={filter.query} onChange={e => setFilter({...filter, query: e.target.value})} />
         <img src={sort} alt={sort} onClick={() => showModal()} />
       </div>
 
