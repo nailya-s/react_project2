@@ -19,7 +19,7 @@ const Profiles = ({users}) => {;
             return {
                 menuItem: section,
                 render: () =>
-                    <Tab.Pane attached="false" className={s.tabStyle}>
+                    <Tab.Pane attached="false">
                         {
                             users
                                 .filter((u) => u.department === section.toLowerCase() || section === "Все")

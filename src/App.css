@@ -41,3 +41,7 @@
 .ui.secondary.pointing.menu .active.item {
   border-color:#5F30F9 !important;
 }
+
+.ui.segment {
+  border:none !important;
+}

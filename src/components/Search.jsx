@@ -9,8 +9,7 @@ const Search = () => {
   const [value, setValue] = useState(null);
   const [visible, setVisible] = useState(false);
   const handleChange = (event, {value}) => {
-    setValue(value);  
-    setVisible(false);
+    setValue(value);
   };
 
   let showModal = () => {

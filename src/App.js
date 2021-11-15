@@ -1,32 +1,29 @@
 import './App.css';
-import { Route, Routes } from 'react-router-dom';
+import { Routes } from 'react-router-dom';
 import 'semantic-ui-css/semantic.min.css';
 import { Container } from 'semantic-ui-react';
 import  Search from './components/Search';
 import Profiles from './components/Profiles/Profiles';
 import { useState, useEffect, useMemo } from 'react';
-import axios from 'axios';
 // import Profile from './components/Profiles/Profile';
 import PostService from './API/PostService';
 import LoaderDisabled from './Loader/Loader';
+import { useFetching } from './hooks/useFetching';
+import Error from './components/Error/Error';
 
 
 
 function App() {
   const [users, setUsers] = useState([]);
-  const [isUsersLoading, setIsUsersLoading] = useState(false);
-  
+  const [fetchUsers, isUsersLoading, usersError] = useFetching( async () => {
+    const response = await PostService.getAll();
+        setUsers(response.items);
+  })
 
     useEffect(() => {
-        loadData();
+      fetchUsers();
     }, []);
 
-    const loadData = async () => {
-      setIsUsersLoading(true);
-        const response = await PostService.getAll();
-        setUsers(response.items);
-        setIsUsersLoading(false);
-    };
 
 
 
@@ -35,10 +32,10 @@ function App() {
     
     <Container className='containerStyle' fluid>
     <Search/>
-    
       {isUsersLoading
       ? <LoaderDisabled />
       : <Profiles users={users} />}
+      {usersError && <Error reload={fetchUsers}/>}
     <Routes>
     {/* <Route path="/:profileId" element={<Profile/>}/> */}
     </Routes>
