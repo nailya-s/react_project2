@@ -17,21 +17,31 @@ function App() {
   const [users, setUsers] = useState([]);
   const [fetchUsers, isUsersLoading, usersError] = useFetching( async () => {
     const response = await PostService.getAll();
-        setUsers(response.items);
-  })
+    setUsers(response.items);
+  });
+  const [selectedSort, setselectedSort] =useState("");
 
     useEffect(() => {
       fetchUsers();
     }, []);
-
-
-
+    
+    const sortUsers = (sort) => {
+      if(sort === "firstName"){
+        setUsers([...users].sort((a, b) => a[sort].localeCompare(b[sort])));
+      }
+      else if (sort === "birthday"){
+        setUsers([...users].sort((a, b) => {
+          a = a[sort].split('/').reverse().join('');
+          b = b[sort].split('/').reverse().join('');
+          return a > b ? 1 : a < b ? -1 : 0;
+        })
+        )}
+    }; 
 
   return (
     <>
-    
     <Container className='containerStyle' fluid>
-    <Search/>
+    <Search sortUsers={sortUsers}/>
       {isUsersLoading
       ? <LoaderDisabled />
       : <Profiles users={users} />}

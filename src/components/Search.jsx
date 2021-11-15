@@ -5,11 +5,12 @@ import s from './Search.module.css';
 import Modal from './Modal/Modal';
 import { Header, Divider, Radio, Icon } from 'semantic-ui-react';
 
-const Search = () => {
+const Search = ({sortUsers}) => {
   const [value, setValue] = useState(null);
   const [visible, setVisible] = useState(false);
   const handleChange = (event, {value}) => {
     setValue(value);
+    sortUsers(value);
   };
 
   let showModal = () => {
@@ -27,13 +28,13 @@ const Search = () => {
                 <Radio
                 name="radioGroup"
                 label="По алфавиту"
-                checked={value === 'alphabet'} value="alphabet" onChange={handleChange}
+                checked={value === 'firstName'} value="firstName" onChange={handleChange}
                 ></Radio>
                 <Divider hidden />
                 <Radio
                 name="radioGroup"
                 label="По дню рождения"
-                checked={value === 'birthDate'} value="birthDate" onChange={handleChange}
+                checked={value === 'birthday'} value="birthday" onChange={handleChange}
                 ></Radio>
             </div>
         </Modal>

@@ -1,5 +1,5 @@
 import React from 'react'
-import { Item, Image, Label } from 'semantic-ui-react';
+import { Item, Image } from 'semantic-ui-react';
 import s from './Profile.module.css';
 
 const Profile = ({avatar, firstName, lastName, position, userTag}) => {
