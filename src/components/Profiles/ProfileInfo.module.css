@@ -1,0 +1,60 @@
+.container {
+    min-width: 80rem;
+    min-height: 17.5rem;
+    background-color: #F7F7F8;
+    padding: 1.5rem 1.375rem;
+    
+}
+.arrow {
+    margin-bottom: 1.875rem;
+}
+.profile {
+    display: flex;
+    justify-content: center;
+}
+
+.tagStyle {
+    padding-left: 3px;
+    font-size:1.0625rem;
+    color: #97979B ;
+}
+.content {
+    margin-top: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.textStyle {
+    font-size: 1.5rem;
+}
+
+.decription {
+    font-size:1rem;
+    color: #55555C;
+}
+
+.details {
+    display: flex;
+    justify-content: space-between;
+    padding:2rem 1.5rem;
+}
+
+.phone {
+    padding: 0.5rem;
+}
+
+.phone>a {
+    color: black;
+    
+}
+
+.flex {
+    display: flex;
+    align-items: center;
+    font-weight: bold;
+}
+
+.age {
+    color:  #97979B;
+}
