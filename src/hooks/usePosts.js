@@ -16,7 +16,7 @@ export const useUsers = (users, sort, query) => {
 
     const sortedAndSearchedUsers = useMemo(() => {
         return sortedUsers.filter(user => user.title.toLowerCase().includes(query.toLowerCase()))
-    }, [query, sortedUsers])
+    }, [query, sortedUsers]);
 
     return sortedAndSearchedUsers;
 }

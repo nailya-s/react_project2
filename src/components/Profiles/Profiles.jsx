@@ -23,6 +23,8 @@ const Profiles = ({ users, filter}) => {
             </div>
         )
     }
+
+    
     function getPanes(sections) {
         return sections.map(function (section) {
             return {
@@ -31,13 +33,20 @@ const Profiles = ({ users, filter}) => {
                     <Tab.Pane attached="false">
                         {
                             users
-                                .filter((u) => u.department === section.toLowerCase() || section === "Все")
-                                .map((p) => {
+                                .filter((u, index) => u.department === section.toLowerCase() || section === "Все")
+                                .map((p,index) => {
+                                    var currentUserBdYear = new Date(p.birthday).getFullYear()
+                                    var nextUser = users.length < index - 1 ? null : users[index +1];
+                                    var showDivider = nextUser != null && new Date(nextUser.birthday).getFullYear() > currentUserBdYear;
                                     return (
                                         <div key={p.id} className={s.itemStyle}>
                                             <Profile avatar={p.avatarUrl} firstName={p.firstName} lastName={p.lastName} position={p.position} userTag={p.userTag} birth={p.birthday} id={p.id}/>
                                             {filter === "birthday" && <Moment format="DD MMMM YYYY">{p.birthday}</Moment>}
+                                            {
+                                            showDivider && <h2>test</h2>
+                                            }
                                         </div>
+                                        
 
                                     )
                                 })
