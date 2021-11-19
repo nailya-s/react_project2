@@ -13,7 +13,6 @@ const sections = ["Все", "Design", "Analytics", "Management", "IOS", "Android
 
 const Profiles = ({ users, filter }) => {
 
-    let wrapped = s.wrapped;
     if (!users.length) {
         return (
             <div className={s.searchFailure}>
@@ -37,16 +36,12 @@ const Profiles = ({ users, filter }) => {
                                 .filter((u) => u.department === section.toLowerCase() || section === "Все")
                                 .map((p, index) => {
                                     var showDivider = false;
-                                    var nextUser = users.length <= index + 1 ? null : users[index + 1];
-                                    if(nextUser != null){
                                     var currentDate = new Date();
                                     var currentYear = currentDate.getFullYear();
-                                    var currentUserBd = new Date(new Date(p["birthday"]).setFullYear(currentYear));
-                                    var firstDayYear = new Date(currentYear, 0, 1);
-                                    var lastDayYear = new Date(currentYear, 12, 31);
-                                    var nextUserBd = new Date(new Date(nextUser.birthday).setFullYear(currentYear));
-                                    showDivider = (nextUserBd >= firstDayYear && nextUserBd < currentDate) && (currentUserBd >= currentDate && currentUserBd <= lastDayYear);
-                                    }
+                                    let sortedUsers = [...users].sort(function(a,b){
+                                        return  new Date(new Date(a["birthday"]).setFullYear(currentYear))- new Date(new Date(b["birthday"]).setFullYear(currentYear));  
+                                    })
+                                    showDivider = (p.id === sortedUsers[users.length-1].id);
                                     
                                     return (
                                         <div key={p.id} className={s.itemStyle}>
