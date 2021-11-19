@@ -25,7 +25,7 @@ const ProfileDetails = () => {
     return (
         <div>
             {users.filter(user => user.id === params.id).map(p => (
-               <ProfileInfo avatar={p.avatarUrl} firstName={p.firstName} lastName={p.lastName} position={p.position} userTag={p.userTag} birthday={p.birthday} id={p.id} phone={p.phone}/>
+               <ProfileInfo key={p.id} avatar={p.avatarUrl} firstName={p.firstName} lastName={p.lastName} position={p.position} userTag={p.userTag} birthday={p.birthday} id={p.id} phone={p.phone}/>
       ))}
         </div>
     )

@@ -1,8 +1,6 @@
 .itemStyle {
     margin-bottom: 20px;
-    display: flex;
-    justify-content: space-between;
-
+    
 }
 
 .ui.menu>.item.active {
@@ -16,4 +14,9 @@
 .searchFailure {
     text-align: center;
     padding-top: 16rem;
+}
+
+.profileStyle {
+    display: flex;
+    justify-content: space-between;
 }

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Item, Image, Divider } from 'semantic-ui-react';
+import { Item, Image } from 'semantic-ui-react';
 import s from './Profile.module.css';
 import {useNavigate} from 'react-router-dom';
 
@@ -8,7 +8,6 @@ const Profile = ({avatar, firstName, lastName, position, userTag, id}) => {
 
     return (
         <div>
-            {/* <Divider></Divider> */}
         <Item.Group link> 
         <Item>
             <Image size='tiny' src={avatar} avatar  />
