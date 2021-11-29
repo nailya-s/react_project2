@@ -18,7 +18,7 @@
 (actual timing 1.5h)
 ## Routing - 1 hour 
 (actual timing 1.5h)
-## Styling - 2 hours 
+## Style - 2 hours 
 ((actual timing 2 hours))
 ## Refactoring - 2 hours 
 ((actual timing  2 hours))
